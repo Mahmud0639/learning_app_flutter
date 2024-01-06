@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "305195102130",
+    "project_id": "shopapp-24aaa",
+    "storage_bucket": "shopapp-24aaa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:305195102130:android:e763faee39b82bc973feab",
+        "android_client_info": {
+          "package_name": "com.example.shop_app_flutter_udemy"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA0vCqzpjNuNJwz1V2-l9VTmBA-8EcTybs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
