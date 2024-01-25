@@ -2,24 +2,92 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shop_app_flutter_udemy/common/utils/app_colors.dart';
 
-Widget text24Normal({String text = "", Color color = AppColors.primaryText}) {
+Widget text24Normal({String text="", Color color = AppColors.primaryText, FontWeight fontWeight=FontWeight.normal}) {
   return Text(
     text,
     textAlign: TextAlign.center,
-    style: TextStyle(fontSize: 24, fontWeight: FontWeight.normal, color: color),
+    style: TextStyle(fontSize: 24, fontWeight: fontWeight, color: color),
   );
 }
 
-Widget text16Normal(
+/*Widget text16Normal(
     {String text = "", Color color = AppColors.primarySecondaryElementText}) {
   return Text(
     text,
     textAlign: TextAlign.center,
     style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal, color: color),
   );
+}*/
+
+class Text16Normal extends StatelessWidget {
+  final String text;
+  final Color color;
+  final FontWeight fontWeight;
+  const Text16Normal({super.key,this.text="",this.color=AppColors.primarySecondaryElementText,this.fontWeight=FontWeight.normal});
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      text,
+      textAlign: TextAlign.center,
+      style: TextStyle(fontSize: 16, fontWeight: fontWeight, color: color),
+    );
+  }
 }
 
-Widget text14Normal(
+class Text10Normal extends StatelessWidget {
+  final String text;
+  final Color color;
+  final FontWeight fontWeight;
+  const Text10Normal({super.key,this.text="",this.color=AppColors.primarySecondaryElementText,this.fontWeight=FontWeight.normal});
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      text,
+      textAlign: TextAlign.center,
+      style: TextStyle(fontSize: 10.sp, fontWeight: fontWeight, color: color),
+    );
+  }
+}
+
+class Text11Normal extends StatelessWidget {
+  final String text;
+  final Color color;
+  final FontWeight fontWeight;
+  const Text11Normal({super.key,this.text="",this.color=AppColors.primaryElementText,this.fontWeight=FontWeight.normal});
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      text,
+      textAlign: TextAlign.center,
+      style: TextStyle(fontSize: 11.sp, fontWeight: fontWeight, color: color),
+    );
+  }
+}
+
+
+class Text14Normal extends StatelessWidget {
+
+  final String text;
+  final Color color;
+
+  const Text14Normal({super.key, this.text="", this.color=AppColors.primaryThreeElementText});
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      text,
+      textAlign: TextAlign.start,
+      style:
+      TextStyle(fontSize: 14.sp, fontWeight: FontWeight.normal, color: color),
+    );;
+  }
+}
+
+
+/*Widget text14Normal(
     {String text = "", Color color = AppColors.primaryThreeElementText}) {
   return Text(
     text,
@@ -27,7 +95,7 @@ Widget text14Normal(
     style:
         TextStyle(fontSize: 14.sp, fontWeight: FontWeight.normal, color: color),
   );
-}
+}*/
 
 Widget textUnderline({String text ="Forgot Password"}) {
   return GestureDetector(

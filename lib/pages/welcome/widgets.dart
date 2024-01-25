@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:shop_app_flutter_udemy/common/utils/constants.dart';
 import 'package:shop_app_flutter_udemy/common/widgets/box_shadow.dart';
 import 'package:shop_app_flutter_udemy/global.dart';
-import 'package:shop_app_flutter_udemy/pages/sign_in/sign_in.dart';
+import 'package:shop_app_flutter_udemy/pages/sign_in/view/sign_in.dart';
 
 import '../../common/utils/app_colors.dart';
 import '../../common/widgets/text_widgets.dart';
@@ -13,12 +13,12 @@ Widget appOnboardingPage(PageController controller,{String imgPath="assets/image
     children: [
       Image.asset(imgPath),
       Container(
-          margin: EdgeInsets.only(top: 5),
+          margin: const EdgeInsets.only(top: 5),
           child: text24Normal(text: title)),
       Container(
-        margin: EdgeInsets.only(top: 12),
-        padding: EdgeInsets.only(left: 30,right: 30),
-        child: text16Normal(text: subTitle),
+        margin: const EdgeInsets.only(top: 12),
+        padding: const EdgeInsets.only(left: 30,right: 30),
+        child: Text16Normal(text: subTitle),
       ),
       _nextButton(index,controller,context)
     ],
@@ -40,11 +40,11 @@ Widget _nextButton(int index,PageController controller,BuildContext context){
     },
     child: Container(
       //alignment: Alignment.center,
-      margin:EdgeInsets.only(top: 70,left: 20,right: 20),
+      margin:const EdgeInsets.only(top: 70,left: 20,right: 20),
       decoration: boxDecoration(color: AppColors.primaryElement,radius: 12),
       width: 300,
       height: 50,
-      child: Center(child: text16Normal(text: index<3?"Next":"Get Started",color: Colors.white)),
+      child: Center(child: Text16Normal(text: index<3?"Next":"Get Started",color: Colors.white)),
     ),
   );
 }

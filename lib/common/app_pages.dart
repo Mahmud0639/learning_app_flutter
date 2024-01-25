@@ -2,10 +2,11 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:shop_app_flutter_udemy/common/app_routes.dart';
 import 'package:shop_app_flutter_udemy/global.dart';
-import 'package:shop_app_flutter_udemy/pages/application/application.dart';
-import 'package:shop_app_flutter_udemy/pages/sign_in/sign_in.dart';
-import 'package:shop_app_flutter_udemy/pages/sign_up/sign_up.dart';
-import 'package:shop_app_flutter_udemy/pages/welcome/welcome.dart';
+import 'package:shop_app_flutter_udemy/pages/application/view/application.dart';
+import 'package:shop_app_flutter_udemy/pages/home/view/home.dart';
+import 'package:shop_app_flutter_udemy/pages/sign_in/view/sign_in.dart';
+import 'package:shop_app_flutter_udemy/pages/sign_up/view/sign_up.dart';
+import 'package:shop_app_flutter_udemy/pages/welcome/view/welcome.dart';
 
 class AppPages{
   static List<RouteEntity> routes(){
@@ -13,7 +14,8 @@ class AppPages{
       RouteEntity(path: AppRoutes.WELCOME, page: Welcome()),
       RouteEntity(path: AppRoutes.SIGN_IN, page: SignIn()),
       RouteEntity(path: AppRoutes.SIGN_UP, page: SignUp()),
-      RouteEntity(path: AppRoutes.APPLICATION, page: Application())
+      RouteEntity(path: AppRoutes.APPLICATION, page: Application()),
+      RouteEntity(path: AppRoutes.HOME, page: const Home())
     ];
   }
 

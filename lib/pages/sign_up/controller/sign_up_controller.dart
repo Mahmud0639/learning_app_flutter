@@ -3,7 +3,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shop_app_flutter_udemy/common/global_loader/global_loader.dart';
-import 'package:shop_app_flutter_udemy/pages/notifier/register_notifier.dart';
+import 'package:shop_app_flutter_udemy/pages/sign_up/repo/sign_up_repo.dart';
+
+import '../../sign_up_notifier/register_notifier.dart';
 
 
 class SignUpController{
@@ -50,7 +52,7 @@ class SignUpController{
     Future.delayed(const Duration(seconds: 3),() async {
       var context = Navigator.of(ref.context);
       try{
-        final credential = await FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: password);
+        final credential = await SignUpRepo.firebaseSignUp(email, password);
         if(kDebugMode){
           print(credential);
         }
@@ -60,6 +62,8 @@ class SignUpController{
           await credential.user?.updateDisplayName(name);
           //something like ....get server photo url
           //set server photo url
+          String photoUrl = "uploads/default.png";
+          await credential.user?.updatePhotoURL(photoUrl);
 
           print('An email has been sent to your email to verify your account. Please open that email and confirm your identity.');
           //Navigator.of(ref.context).pop();//don't use BuildContext across... to fix this issue we should define this before await
@@ -84,6 +88,7 @@ class SignUpController{
       // ref.read(appLoaderProvider.notifier).setLoader(false);
       ref.watch(appLoaderProvider.notifier).setLoader(false);
     });
+
    /* print("Your name is $name");
     print("Your email is $email");
     print("Your password is $password");

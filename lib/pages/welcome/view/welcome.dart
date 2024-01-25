@@ -2,10 +2,11 @@ import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:shop_app_flutter_udemy/common/widgets/text_widgets.dart';
+import 'package:shop_app_flutter_udemy/common/utils/image_res.dart';
 import 'package:shop_app_flutter_udemy/pages/welcome/widgets.dart';
 
-import '../notifier/welcome_notifier.dart';
+import '../../sign_up_notifier/welcome_notifier.dart';
+
 
 
 final indexProvider = StateProvider<int>((ref)=>0);
@@ -46,19 +47,19 @@ class Welcome extends ConsumerWidget {
                   //scrollDirection: Axis.vertical,
                   children: [
                     appOnboardingPage(_pageController,
-                        imgPath: "assets/images/reading.png",
+                        imgPath: ImageRes.reading,
                         title: "First See Learning",
                         subTitle:
                             "Forget about of paper all knowledge in one learning",
                         index: 1,context: context),
                     appOnboardingPage(_pageController,
-                        imgPath: "assets/images/man.png",
+                        imgPath: ImageRes.man,
                         title: "Connect with everyone",
                         subTitle:
                             "Always keep in touch with your tutor and friends. Let's get connected",
                         index: 2,context: context),
                     appOnboardingPage(_pageController,
-                        imgPath: "assets/images/boy.png",
+                        imgPath: ImageRes.boy,
                         title: "Always fascinated learning",
                         subTitle:
                             "Anywhere, anytime. The time is at your discretion. So study wherever you want",
@@ -68,6 +69,7 @@ class Welcome extends ConsumerWidget {
                   ],
                 ),
                 Positioned(
+                  bottom: 10,
                   child: DotsIndicator(
                     dotsCount: 3,
                     decorator: DotsDecorator(
@@ -78,7 +80,6 @@ class Welcome extends ConsumerWidget {
                   //position: dotsIndex,
                     position: index,
                   ),
-                  bottom: 10,
                 ),
 
                 // Positioned(bottom: 100, left: 20, child: Text("Widget one")),

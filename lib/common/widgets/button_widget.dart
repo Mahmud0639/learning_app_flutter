@@ -4,7 +4,7 @@ import 'package:shop_app_flutter_udemy/common/utils/app_colors.dart';
 import 'package:shop_app_flutter_udemy/common/widgets/box_shadow.dart';
 import 'package:shop_app_flutter_udemy/common/widgets/text_widgets.dart';
 import 'package:shop_app_flutter_udemy/pages/sign_in/widgets/sign_in_widgets.dart';
-import 'package:shop_app_flutter_udemy/pages/sign_up/sign_up.dart';
+import 'package:shop_app_flutter_udemy/pages/sign_up/view/sign_up.dart';
 
 import 'app_bar.dart';
 
@@ -32,7 +32,7 @@ Widget buttonWidget(
               isLogin ? AppColors.primaryElement : AppColors.primaryBackground,
           border: Border.all(color: AppColors.primaryFourElementText)),
       child: Center(
-          child: text16Normal(
+          child: Text16Normal(
               text: buttonName,
               color: isLogin
                   ? AppColors.primaryBackground

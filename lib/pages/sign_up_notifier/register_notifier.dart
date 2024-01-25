@@ -1,5 +1,5 @@
-import 'package:shop_app_flutter_udemy/pages/notifier/register_state.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:shop_app_flutter_udemy/pages/sign_up_notifier/register_state.dart';
 part 'register_notifier.g.dart';
 
 @riverpod

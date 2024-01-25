@@ -12,14 +12,14 @@ Widget textFormField(
     String text = "",
     String iconName = "",
     String hintText = "Type in your info",
-    bool obscureText = false,
+      bool obscureText = false,
     void Function(String value)? func}) {
   return Container(
     padding: EdgeInsets.only(left: 25.w, right: 25.w),
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        text14Normal(text: text),
+        Text14Normal(text: text),
         Container(
           width: 325.w,
           height: 50.h,
@@ -29,33 +29,38 @@ Widget textFormField(
               Container(
                   margin: EdgeInsets.only(left: 17.w),
                   child: appImage(imagePath: iconName)),
-              Container(
-                width: 260.w,
-                height: 50.h,
-                child: TextField(
-                  controller: controller,
-                  onChanged: (value)=>func!(value),
-                  keyboardType: TextInputType.multiline,
-                  decoration: InputDecoration(
-                      hintText: hintText,
-                      border: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.transparent)),
-                      enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.transparent)),
-                      focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.transparent)),
-                      disabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.transparent))),
-
-                  maxLines: 1,
-                  autocorrect: false,
-                  obscureText: obscureText,
-                ),
-              )
+              app_textfield_only(controller: controller,hintText: hintText,func: func,obscureText: obscureText)
             ],
           ),
         )
       ],
     ),
   );
+}
+
+Widget app_textfield_only({TextEditingController? controller,String hintText = "Type in your info",double width=240,double height=40, void Function(String value)? func,bool obscureText = false,}){
+    return  Container(
+      width: width.w,
+      height: height.h,
+      child: TextField(
+        controller: controller,
+        onChanged: (value)=>func!(value),
+        keyboardType: TextInputType.multiline,
+        decoration: InputDecoration(
+          contentPadding: EdgeInsets.only(top: 8.h,left: 10.w),//used to resize our hintText inside the searchBar
+            hintText: hintText,
+            border: const OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.transparent)),
+            enabledBorder: const OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.transparent)),
+            focusedBorder: const OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.transparent)),
+            disabledBorder: const OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.transparent))),
+
+        maxLines: 1,
+        autocorrect: false,
+        obscureText: obscureText,
+      ),
+    );
 }

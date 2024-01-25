@@ -3,17 +3,40 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shop_app_flutter_udemy/common/app_pages.dart';
 import 'package:shop_app_flutter_udemy/common/utils/app_styles.dart';
+import 'package:shop_app_flutter_udemy/common/utils/http_utils.dart';
 import 'package:shop_app_flutter_udemy/global.dart';
-import 'package:shop_app_flutter_udemy/pages/application/application.dart';
-import 'package:shop_app_flutter_udemy/pages/sign_in/sign_in.dart';
-import 'package:shop_app_flutter_udemy/pages/sign_up/sign_up.dart';
-import 'package:shop_app_flutter_udemy/pages/welcome/welcome.dart';
-import 'package:firebase_core/firebase_core.dart';
+import 'package:shop_app_flutter_udemy/pages/application/view/application.dart';
+import 'package:shop_app_flutter_udemy/pages/sign_in/view/sign_in.dart';
+import 'package:shop_app_flutter_udemy/pages/sign_up/view/sign_up.dart';
+import 'package:shop_app_flutter_udemy/pages/welcome/view/welcome.dart';
 
-import 'firebase_options.dart';
 
 Future<void> main() async {
   await Global.init();//many initialization is required so we need to write 'await' before Global.init()..because many files need to be initialized at a time.
+ //HttpUtil();
+ /*
+  var obj1 = HttpUtil();
+  var obj2 = HttpUtil();
+
+  if(obj1.hashCode==obj2.hashCode){
+
+    print('Yes, Singleton class has one instance');
+  }*/
+
+  //here the problem was in the double quotation in the postman for the open_id and avatar section
+/* await HttpUtil().post("api/login",queryParameters: {
+   'name': "Mahmud Islam ok",
+   'email': "bappimatubber2004@gmail.com",
+   'avatar': "abcd",
+   'open_id': "abcdefghijklmnopqrstuvw",
+   'type': 3,
+
+
+ });*/
+
+
+
+
   runApp(const ProviderScope(child: MyApp()));
 }
 
@@ -24,6 +47,8 @@ var routesMap = {
   "/application":(context)=>Application()
 };
 
+final GlobalKey<NavigatorState> navKey = GlobalKey<NavigatorState>();//with this we need not to pass context while Navigation needed
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -33,6 +58,7 @@ class MyApp extends StatelessWidget {
     return ScreenUtilInit(
       designSize: const Size(360, 640),
       builder: (context,child)=>MaterialApp(
+        navigatorKey: navKey,
         title: 'Flutter Demo',
         theme: AppTheme.appThemeData,
         initialRoute: "/",

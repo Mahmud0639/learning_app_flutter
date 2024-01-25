@@ -5,7 +5,7 @@ import '../utils/app_colors.dart';
 
 AppBar buildAppBar({String text = "Login"}){
   return AppBar(
-    title: text16Normal(text: text,color: AppColors.primaryText),
+    title: Text16Normal(text: text,color: AppColors.primaryText),
     bottom: PreferredSize(
       child: Container(
         color: Colors.grey.withOpacity(0.3),

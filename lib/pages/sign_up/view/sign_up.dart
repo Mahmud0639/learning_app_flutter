@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shop_app_flutter_udemy/common/global_loader/global_loader.dart';
+import 'package:shop_app_flutter_udemy/common/utils/image_res.dart';
 import 'package:shop_app_flutter_udemy/common/widgets/button_widget.dart';
 import 'package:shop_app_flutter_udemy/common/widgets/text_widgets.dart';
-import 'package:shop_app_flutter_udemy/pages/notifier/register_notifier.dart';
-import 'package:shop_app_flutter_udemy/pages/sign_in/widgets/sign_in_widgets.dart';
-import 'package:shop_app_flutter_udemy/pages/sign_up/sign_up_controller.dart';
+import 'package:shop_app_flutter_udemy/pages/sign_up/controller/sign_up_controller.dart';
 
-import '../../common/widgets/app_bar.dart';
-import '../../common/widgets/app_textfields.dart';
+import '../../../common/widgets/app_bar.dart';
+import '../../../common/widgets/app_textfields.dart';
+import '../../sign_up_notifier/register_notifier.dart';
 
 class SignUp extends ConsumerStatefulWidget {//to make the ref as global we made the ConsumerStatefulWidget instead of ConsumerWidget
   const SignUp({super.key});
@@ -24,7 +24,10 @@ class _SignUpState extends ConsumerState<SignUp> {
 
   @override
   void initState() {
-    _controller = SignUpController(ref: ref);
+    Future.delayed(Duration(seconds: 0),(){
+      _controller = SignUpController(ref: ref);
+    });
+
     super.initState();
   }
 
@@ -49,15 +52,15 @@ class _SignUpState extends ConsumerState<SignUp> {
                   SizedBox(
                     height: 25.h,
                   ),
-                  Center(
-                      child: text14Normal(
+                  const Center(
+                      child: Text14Normal(
                           text: "Enter your details below & free sign up")),
                   SizedBox(
                     height: 30.h,
                   ),
                   textFormField(
                       text: "User name",
-                      iconName: "assets/icons/user.png",
+                      iconName: ImageRes.user,
                       hintText: "Enter your user name",
                       func: (value) {
                         ref.read(registerNotifierProvider.notifier).onUserNameChanged(value);
@@ -67,7 +70,7 @@ class _SignUpState extends ConsumerState<SignUp> {
                   ),
                   textFormField(
                       text: "Email",
-                      iconName: "assets/icons/user.png",
+                      iconName: ImageRes.lock,
                       hintText: "Enter your email address",
                       func: (value) => ref.read(registerNotifierProvider.notifier).onUserEmailChanged(value)),
                   SizedBox(
@@ -75,7 +78,7 @@ class _SignUpState extends ConsumerState<SignUp> {
                   ),
                   textFormField(
                       text: "Password",
-                      iconName: "assets/icons/lock.png",
+                      iconName: ImageRes.lock,
                       obscureText: true,
                       hintText: "Enter your password",
                       func: (value) => ref.read(registerNotifierProvider.notifier).onUserPasswordChanged(value)),
@@ -84,7 +87,7 @@ class _SignUpState extends ConsumerState<SignUp> {
                   ),
                   textFormField(
                       text: "Confirm Password",
-                      iconName: "assets/icons/lock.png",
+                      iconName: ImageRes.lock,
                       obscureText: true,
                       hintText: "Enter your confirm password",
                       func: (value) => ref.read(registerNotifierProvider.notifier).onUserRePasswordChanged(value)),
@@ -93,7 +96,7 @@ class _SignUpState extends ConsumerState<SignUp> {
                   ),
                   Container(
                       margin: EdgeInsets.only(left: 25.w),
-                      child: text14Normal(
+                      child: const Text14Normal(
                           text:
                               "By creating an account you are agreeing with our terms and conditions")),
                   SizedBox(

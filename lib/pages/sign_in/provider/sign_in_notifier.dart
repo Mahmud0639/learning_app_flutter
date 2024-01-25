@@ -1,5 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:shop_app_flutter_udemy/pages/sign_in/notifier/sign_in_state.dart';
+import 'package:shop_app_flutter_udemy/pages/sign_in/provider/sign_in_state.dart';
 
 class SignInNotifier extends StateNotifier<SignInState>{
   SignInNotifier():super(const SignInState());//to make a constructor of that class is extends the parent class
