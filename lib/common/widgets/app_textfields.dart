@@ -28,7 +28,7 @@ Widget textFormField(
             children: [
               Container(
                   margin: EdgeInsets.only(left: 17.w),
-                  child: appImage(imagePath: iconName)),
+                  child: AppImage(imagePath: iconName)),
               app_textfield_only(controller: controller,hintText: hintText,func: func,obscureText: obscureText)
             ],
           ),

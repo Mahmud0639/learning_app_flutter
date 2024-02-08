@@ -15,3 +15,10 @@ AppBar buildAppBar({String text = "Login"}){
     ),
   );
 }
+
+AppBar buildGlobalAppBar({String text = ""}){
+  return AppBar(
+    title: Text16Normal(text: text,color: AppColors.primaryText),
+
+  );
+}

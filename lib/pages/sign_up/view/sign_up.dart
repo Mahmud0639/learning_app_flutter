@@ -103,7 +103,7 @@ class _SignUpState extends ConsumerState<SignUp> {
                     height: 40.h,
                   ),
                   Center(
-                      child: buttonWidget(
+                      child: ButtonWidget(
                           isLogin: true,
                           buttonName: "Sign up",
                           context: context,func: ()=>_controller.handleSignUp())),

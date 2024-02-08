@@ -6,6 +6,8 @@ class ImageRes{
     static const String _imageBase = "assets/icons";//here this approach is very important because we don't need to change everywhere from other files, only we need to change from here one time...because of the private variable anyone would not be able to access it easily and can't modify
     static const String defaultImage = '$_imageBase/home.png';
     static const String user = '$_imageBase/user.png';
+    static const String people = '$_imageBase/people.png';
+    static const String star = '$_imageBase/star.png';
     static const String lock = '$_imageBase/lock.png';
     static const String home = '$_imageBase/home.png';
     static const String search = '$_imageBase/search2.png';

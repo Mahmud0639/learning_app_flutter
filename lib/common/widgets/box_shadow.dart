@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shop_app_flutter_udemy/common/models/course_entity.dart';
 import 'package:shop_app_flutter_udemy/common/utils/app_colors.dart';
+import 'package:shop_app_flutter_udemy/common/widgets/text_widgets.dart';
 
 import '../utils/image_res.dart';
 
@@ -50,20 +52,41 @@ class AppBoxDecorationImage extends StatelessWidget {
   final double width;
   final double height;
   final String imgPath;
-  const AppBoxDecorationImage({super.key,this.width=40,this.height=40,this.imgPath=ImageRes.user});
+  final BoxFit fit;
+  final CourseItem? item;
+  final Function()? func;
+  const AppBoxDecorationImage({super.key,this.width=40,this.height=40,this.imgPath=ImageRes.user,this.fit=BoxFit.fitHeight,this.item,this.func});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: width.h,
-      height: height.h,
-      decoration: BoxDecoration(
-          image:  DecorationImage(
-              image: NetworkImage(
-                  imgPath
-              )
-          ),
-          borderRadius: BorderRadius.circular(20.w)
+    return GestureDetector(
+      onTap: func,
+      child: Container(
+        width: width.h,
+        height: height.h,
+        decoration: BoxDecoration(
+            image:  DecorationImage(
+              fit: fit,
+                image: NetworkImage(
+                    imgPath
+                )
+            ),
+            borderRadius: BorderRadius.circular(20.w)
+        ),
+        child:  item == null? Container():Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              margin: EdgeInsets.only(left: 20.w),
+              child: FadeText(text:item!.name!),
+            ),
+            Container(
+              margin: EdgeInsets.only(left: 20.w,bottom: 40.h),
+              child: FadeText(text: "${item!.lesson_num!} Lessons",color: AppColors.primaryFourElementText,fontSize: 8,),
+            )
+          ],
+        ),
       ),
     );
   }

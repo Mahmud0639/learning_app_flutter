@@ -1,4 +1,5 @@
 import 'package:dots_indicator/dots_indicator.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -146,10 +147,16 @@ AppBar homeAppBar(WidgetRef ref) {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          appImage(imagePath: ImageRes.menu, width: 18.w, height: 12.h),
+          AppImage(imagePath: ImageRes.menu, width: 18.w, height: 12.h),
           //Since profileState return an asynchronous data so we need to do like this 'profileState.when()'
-          profileState.when(data: (value)=>GestureDetector(child:  AppBoxDecorationImage(imgPath: "${AppConstants.SERVER_API_URL}${value.avatar!}",)), error: (err,stack)=>appImage(imagePath: ImageRes.user, width: 18.w, height: 12.h), loading: ()=>Container())
-
+          profileState.when(
+              data: (value) => GestureDetector(
+                      child: AppBoxDecorationImage(
+                    imgPath: "${AppConstants.SERVER_API_URL}${value.avatar!}",
+                  )),
+              error: (err, stack) =>
+                  AppImage(imagePath: ImageRes.user, width: 18.w, height: 12.h),
+              loading: () => Container())
         ],
       ),
     ),
@@ -185,19 +192,31 @@ class HomeMenuBar extends StatelessWidget {
             ],
           ),
         ),
-
-        SizedBox(height: 20.h,),
+        SizedBox(
+          height: 20.h,
+        ),
         Row(
           children: [
             Container(
-                padding: EdgeInsets.only(left: 15.w,right: 15.w,top: 5.h,bottom: 5.h),
+              padding: EdgeInsets.only(
+                  left: 15.w, right: 15.w, top: 5.h, bottom: 5.h),
               decoration: boxDecoration(radius: 7.w),
+              child: const Text11Normal(
+                text: "All",
+              ),
+            ),
+            Container(
+                margin: EdgeInsets.only(left: 30.w),
                 child: const Text11Normal(
-              text: "All",
-            ),
-            ),
-            Container(margin: EdgeInsets.only(left: 30.w),child: const Text11Normal(text: "Popular",color: AppColors.primaryThreeElementText,)),
-            Container(margin: EdgeInsets.only(left: 30.w),child: const Text11Normal(text: "Newest",color: AppColors.primaryThreeElementText,)),
+                  text: "Popular",
+                  color: AppColors.primaryThreeElementText,
+                )),
+            Container(
+                margin: EdgeInsets.only(left: 30.w),
+                child: const Text11Normal(
+                  text: "Newest",
+                  color: AppColors.primaryThreeElementText,
+                )),
           ],
         )
       ],
@@ -206,28 +225,59 @@ class HomeMenuBar extends StatelessWidget {
 }
 
 class CourseItemsGrid extends StatelessWidget {
-  const CourseItemsGrid({super.key});
+  final WidgetRef ref;
+
+  CourseItemsGrid({super.key, required this.ref});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: GridView.builder(
-          shrinkWrap: true,//possible lowest space
-          physics: ScrollPhysics(),
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisSpacing: 30,//horizontally spacing
-              mainAxisSpacing: 30,//vertically spacing
-              crossAxisCount: 2),//crossAxisCount means horizontally count items
+    final courseState = ref.watch(homeCourseListProvider);
+    //here asyncNotifier gives us the option of when statement to loop each of the values of api
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: 18.h, horizontal: 0),
+      child: courseState.when(
+          data: (value) => GridView.builder(
+              shrinkWrap: true,
+              //possible lowest space
+              physics: const ScrollPhysics(),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisSpacing: 15, //horizontally spacing
+                  mainAxisSpacing: 15, //vertically spacing
+                  crossAxisCount: 2,
+                  childAspectRatio: 1.6),
+              //crossAxisCount means horizontally count items
 
-
-          itemCount: 6,
-          itemBuilder: (_, int index) {
-            return appImage();
-          }),
+              itemCount: value?.length,
+              itemBuilder: (_, int index) {
+                return AppBoxDecorationImage(
+                  func: (){
+                    //Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=>Scaffold(body: Container(),)));
+                    //we are sending id as Map with the help of arguments
+                    Navigator.of(context).pushNamed("/courseDetails",arguments: {
+                      "id":value[index].id
+                    });
+                  },
+                  imgPath: "${AppConstants.IMAGE_UPLOAD_PATH}${value![index].thumbnail}",
+                  fit: BoxFit.fitWidth,
+                );
+              }),
+          error: (error, stackTrace) {
+            if (kDebugMode) {
+              print('Error:${error.toString()}');
+            }
+            if (kDebugMode) {
+              print('stackTrace:${stackTrace.toString()}');
+            }
+            return const Center(
+              child: Text("Error loading"),
+            );
+          },
+          loading: () => const Center(
+                child: Text("Loading..."),
+              )),
     );
   }
 }
-
 
 /*Widget userName(){
   print('My username');

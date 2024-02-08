@@ -42,44 +42,50 @@ class _HomeState extends ConsumerState<Home> {
       appBar: homeAppBar(
         ref
       ),
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 25.w),
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              SizedBox(
-                height: 15.h,
-              ),
-              const HelloText(),
-              const UserName(),
-              //everytime widget building but if we use Class instead of Widget for not rebuilding everytime
-              searchBar(),
-              SizedBox(
-                height: 20.h,
-              ),
-              // banner( ref: ref,controller: _controller)
-              HomeBanner(controller: _controller, ref: ref),
-              const HomeMenuBar(
+      body: RefreshIndicator(
+        onRefresh: (){
+          //which method should be refreshing we need to write here
+         return ref.refresh(homeCourseListProvider.notifier).fetchCourseList();
+        },
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 25.w),
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                SizedBox(
+                  height: 15.h,
+                ),
+                const HelloText(),
+                const UserName(),
+                //everytime widget building but if we use Class instead of Widget for not rebuilding everytime
+                searchBar(),
+                SizedBox(
+                  height: 20.h,
+                ),
+                // banner( ref: ref,controller: _controller)
+                HomeBanner(controller: _controller, ref: ref),
+                const HomeMenuBar(
 
-              ),
-              /* CustomScrollView(
-                shrinkWrap: true,//it will take minimum space
-                physics: const ScrollPhysics(),//when scrolling is not working then we should use this
-                slivers: [
-                  //sliver only take list of widgets
-                  SliverPadding(padding: const EdgeInsets.all(20),sliver: SliverGrid.count(crossAxisCount: 2,children: const [
-                    Text("Mahmud Islam"),
-                    Text("Mahmud Islam"),
-                    Text("Mahmud Islam"),
-                    Text("Mahmud Islam"),
-                  ],),)
-                ],
-              )*/
-              //another way to do that
-              const CourseItemsGrid(),
-            ],
+                ),
+                /* CustomScrollView(
+                  shrinkWrap: true,//it will take minimum space
+                  physics: const ScrollPhysics(),//when scrolling is not working then we should use this
+                  slivers: [
+                    //sliver only take list of widgets
+                    SliverPadding(padding: const EdgeInsets.all(20),sliver: SliverGrid.count(crossAxisCount: 2,children: const [
+                      Text("Mahmud Islam"),
+                      Text("Mahmud Islam"),
+                      Text("Mahmud Islam"),
+                      Text("Mahmud Islam"),
+                    ],),)
+                  ],
+                )*/
+                //another way to do that
+                 CourseItemsGrid(ref: ref,),
+              ],
+            ),
           ),
         ),
       ),
