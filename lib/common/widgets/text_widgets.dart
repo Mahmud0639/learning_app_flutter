@@ -45,22 +45,49 @@ class Text16Normal extends StatelessWidget {
   }
 }
 
+class Text13Normal extends StatelessWidget {
+  final String text;
+  final Color color;
+  final FontWeight fontWeight;
+  final TextAlign? textAlign;
+
+  const Text13Normal(
+      {super.key,
+        this.text = "",
+        this.color = AppColors.primaryText,
+        this.fontWeight = FontWeight.bold,
+        this.textAlign = TextAlign.start});
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      text,
+      textAlign: textAlign,
+      style: TextStyle(fontSize: 13.sp, fontWeight: fontWeight, color: color),
+    );
+  }
+}
+
 class Text10Normal extends StatelessWidget {
   final String text;
   final Color color;
   final FontWeight fontWeight;
+  final TextOverflow textOverflow;
 
   const Text10Normal(
       {super.key,
       this.text = "",
       this.color = AppColors.primarySecondaryElementText,
-      this.fontWeight = FontWeight.normal});
+      this.fontWeight = FontWeight.normal,
+      this.textOverflow = TextOverflow.ellipsis});
 
   @override
   Widget build(BuildContext context) {
     return Text(
       text,
       textAlign: TextAlign.center,
+      overflow: textOverflow,
+      maxLines: 1,
       style: TextStyle(fontSize: 10.sp, fontWeight: fontWeight, color: color),
     );
   }

@@ -23,3 +23,12 @@ class AppImage extends StatelessWidget {
 Widget appImageWithColor({String imgPath = ImageRes.defaultImage,double width = 15,double height = 15,Color color = AppColors.primaryElement}){
   return Image.asset(imgPath.isEmpty?ImageRes.defaultImage:imgPath,width: width,height: height,color: color,);
 }
+BoxDecoration networkImageDecoration({required String imagePath}){
+  return BoxDecoration(
+      image: DecorationImage(
+          image: NetworkImage(
+              imagePath
+          )
+      )
+  );
+}

@@ -5,6 +5,7 @@ import 'package:shop_app_flutter_udemy/global.dart';
 import 'package:shop_app_flutter_udemy/pages/application/view/application.dart';
 import 'package:shop_app_flutter_udemy/pages/course_details/view/course_details.dart';
 import 'package:shop_app_flutter_udemy/pages/home/view/home.dart';
+import 'package:shop_app_flutter_udemy/pages/lesson_detail/view/lesson_detail.dart';
 import 'package:shop_app_flutter_udemy/pages/sign_in/view/sign_in.dart';
 import 'package:shop_app_flutter_udemy/pages/sign_up/view/sign_up.dart';
 import 'package:shop_app_flutter_udemy/pages/welcome/view/welcome.dart';
@@ -17,7 +18,8 @@ class AppPages{
       RouteEntity(path: AppRoutes.SIGN_UP, page: const SignUp()),
       RouteEntity(path: AppRoutes.APPLICATION, page: const Application()),
       RouteEntity(path: AppRoutes.HOME, page: const Home()),
-      RouteEntity(path: AppRoutes.COURSE_DETAILS, page: const CourseDetails())
+      RouteEntity(path: AppRoutes.COURSE_DETAILS, page: const CourseDetails()),
+      RouteEntity(path: AppRoutes.LESSON_DETAIL, page: const LessonDetail())
     ];
   }
 

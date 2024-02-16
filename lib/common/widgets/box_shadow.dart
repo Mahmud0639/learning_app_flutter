@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shop_app_flutter_udemy/common/models/course_entity.dart';
@@ -57,19 +58,19 @@ class AppBoxDecorationImage extends StatelessWidget {
   final Function()? func;
   const AppBoxDecorationImage({super.key,this.width=40,this.height=40,this.imgPath=ImageRes.user,this.fit=BoxFit.fitHeight,this.item,this.func});
 
+  //changed after adding the CachedNetworkImage
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: func,
-      child: Container(
+      child: CachedNetworkImage(imageUrl: imgPath,
+        imageBuilder: (context,imageProvider)=>Container(
         width: width.h,
         height: height.h,
         decoration: BoxDecoration(
             image:  DecorationImage(
-              fit: fit,
-                image: NetworkImage(
-                    imgPath
-                )
+                fit: fit,
+                image: imageProvider
             ),
             borderRadius: BorderRadius.circular(20.w)
         ),
@@ -87,6 +88,12 @@ class AppBoxDecorationImage extends StatelessWidget {
             )
           ],
         ),
+      ),
+        placeholder: (context,url)=>Container(//it will show a loading as placeholder while loading the data
+        alignment: Alignment.center,
+        child: const CircularProgressIndicator(),
+      ),
+        errorWidget: (context,url,error)=>Image.asset(ImageRes.defaultImage),
       ),
     );
   }
