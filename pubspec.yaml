@@ -47,6 +47,7 @@ dependencies:
   dio: ^5.4.0
   video_player:
   cached_network_image:
+  webview_flutter: ^3.0.1
 
 dev_dependencies:
   flutter_test:

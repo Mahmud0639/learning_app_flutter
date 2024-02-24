@@ -51,7 +51,7 @@ class _CourseDetailsState extends ConsumerState<CourseDetails> {
                               CourseDetailsIconText(
                                 courseItem: data,
                               ),
-                              const CourseDetailsGoBuyButton(),
+                              CourseDetailsGoBuyButton(courseItem: data,),
                               CourseDetailsInclude(courseItem: data)
                             ],
                           ),

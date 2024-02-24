@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shop_app_flutter_udemy/common/app_pages.dart';
+import 'package:shop_app_flutter_udemy/common/app_routes.dart';
 import 'package:shop_app_flutter_udemy/common/models/course_entity.dart';
 import 'package:shop_app_flutter_udemy/common/models/lesson_entities.dart';
 import 'package:shop_app_flutter_udemy/common/utils/app_colors.dart';
@@ -125,13 +127,19 @@ class CourseDetailsDescription extends StatelessWidget {
 }
 
 class CourseDetailsGoBuyButton extends StatelessWidget {
-  const CourseDetailsGoBuyButton({super.key});
+  final CourseItem courseItem;
+  const CourseDetailsGoBuyButton({super.key,required this.courseItem});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        margin: EdgeInsets.only(top: 20.h),
-        child: ButtonWidget(buttonName: "Go Buy"));
+    return GestureDetector(
+      onTap: (){
+        Navigator.of(context).pushNamed(AppRoutes.BUY_COURSE,arguments: {"id":courseItem.id});
+      },
+      child: Container(
+          margin: EdgeInsets.only(top: 20.h),
+          child: ButtonWidget(buttonName: "Go Buy")),
+    );
   }
 }
 

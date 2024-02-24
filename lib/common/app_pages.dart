@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:shop_app_flutter_udemy/common/app_routes.dart';
 import 'package:shop_app_flutter_udemy/global.dart';
 import 'package:shop_app_flutter_udemy/pages/application/view/application.dart';
+import 'package:shop_app_flutter_udemy/pages/buy_course/view/buy_course.dart';
 import 'package:shop_app_flutter_udemy/pages/course_details/view/course_details.dart';
 import 'package:shop_app_flutter_udemy/pages/home/view/home.dart';
 import 'package:shop_app_flutter_udemy/pages/lesson_detail/view/lesson_detail.dart';
@@ -19,7 +20,8 @@ class AppPages{
       RouteEntity(path: AppRoutes.APPLICATION, page: const Application()),
       RouteEntity(path: AppRoutes.HOME, page: const Home()),
       RouteEntity(path: AppRoutes.COURSE_DETAILS, page: const CourseDetails()),
-      RouteEntity(path: AppRoutes.LESSON_DETAIL, page: const LessonDetail())
+      RouteEntity(path: AppRoutes.LESSON_DETAIL, page: const LessonDetail()),
+      RouteEntity(path: AppRoutes.BUY_COURSE, page: const BuyCourse())
     ];
   }
 
